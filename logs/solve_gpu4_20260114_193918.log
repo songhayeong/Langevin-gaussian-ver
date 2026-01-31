@@ -1,0 +1,55 @@
+[INFO] Inside container
+CUDA available: True
+CUDA devices: 1
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 409, in hf_raise_for_status
+    response.raise_for_status()
+  File "/opt/conda/lib/python3.10/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers/resolve/main/model_index.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/solve.py", line 147, in <module>
+    run(args)
+  File "/workspace/solve.py", line 31, in run
+    solver = get_solver(args.method)
+  File "/workspace/sd3_sampler.py", line 26, in get_solver
+    return __SOLVER__[name](**kwargs)
+  File "/workspace/sd3_sampler.py", line 135, in __init__
+    super().__init__(model_key=model_key, device=device)
+  File "/workspace/sd3_sampler.py", line 36, in __init__
+    pipe = StableDiffusion3Pipeline.from_pretrained(model_key, torch_dtype=self.dtype)
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/diffusers/pipelines/pipeline_utils.py", line 699, in from_pretrained
+    cached_folder = cls.download(
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/diffusers/pipelines/pipeline_utils.py", line 1298, in download
+    config_file = hf_hub_download(
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 862, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 969, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1486, in _raise_on_head_call_error
+    raise head_call_error
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1376, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1296, in get_hf_file_metadata
+    r = _request_wrapper(
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 280, in _request_wrapper
+    response = _request_wrapper(
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 304, in _request_wrapper
+    hf_raise_for_status(response)
+  File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 426, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-6967725e-0747a9045c517e685b89dc65;83595921-2b4a-4d4f-9aec-b30b887206ae)
+
+Cannot access gated repo for url https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers/resolve/main/model_index.json.
+Access to model stabilityai/stable-diffusion-3-medium-diffusers is restricted. You must have access to it and be authenticated to access it. Please log in.

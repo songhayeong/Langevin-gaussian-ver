@@ -1,0 +1,15 @@
+python solve.py \
+    --img_size 768 \
+    --img_path samples/afhq_example.jpg \
+    --prompt "a high quality photo of an object" \
+    --workdir results/langevin_sr_afhd_n5_lan \
+    --method flowdps \
+    --NFE 50 \
+    --cfg_scale 2.0 \
+    --task sr_avgpool \
+    --deg_scale 12 \
+    --langevin_steps 2\
+    --langevin_step_size 0.01 \
+    --langevin_lik_weight 0.01 \
+    --langevin_noise_scale 0.1 \
+    --efficient_memory ;
